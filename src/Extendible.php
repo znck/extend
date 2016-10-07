@@ -7,11 +7,13 @@ trait Extendible
     protected $extends = [];
 
     // -- Overrides.
-    protected function getArrayableAttributes() {
+    protected function getArrayableAttributes()
+    {
         return parent::getArrayableAttributes() + $this->getArrayableExtends();
     }
 
-    public function getAttributeFromArray($key) {
+    public function getAttributeFromArray($key)
+    {
         if ($this->isExtendedAttribute($key)) {
             return $this->getExtendedAttribute($key);
         }
@@ -19,14 +21,16 @@ trait Extendible
         return parent::getAttribute($key);
     }
 
-    public function setAttribute($key, $value) {
+    public function setAttribute($key, $value)
+    {
         parent::setAttribute($key, $value);
 
         return $this->setExtendedAttribute($key, $value);
     }
 
-    public function getArrayableExtends() {
-        if (!count($this->extends)) {
+    public function getArrayableExtends()
+    {
+        if (! count($this->extends)) {
             return [];
         }
 
@@ -35,7 +39,8 @@ trait Extendible
         );
     }
 
-    public function getArrayableExtendValues() {
+    public function getArrayableExtendValues()
+    {
         $attributes = [];
 
         foreach ($this->getArrayableExtends() as $key) {
@@ -43,7 +48,8 @@ trait Extendible
         }
     }
 
-    public function getExtendedAttribute($key) {
+    public function getExtendedAttribute($key)
+    {
         $attributes = $this->{$this->extendColumn};
 
         if (array_key_exists($key, $attributes)) {
@@ -51,7 +57,8 @@ trait Extendible
         }
     }
 
-    public function setExtendedAttribute($key, $value) {
+    public function setExtendedAttribute($key, $value)
+    {
         if ($this->isExtendedAttribute($key)) {
             unset($this->attributes[$key]);
 
@@ -63,7 +70,8 @@ trait Extendible
         return $this;
     }
 
-    public function isExtendedAttribute($key) {
+    public function isExtendedAttribute($key)
+    {
         return in_array($key, $this->appends);
     }
 }
