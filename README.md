@@ -7,7 +7,7 @@ PSRs you support to avoid any confusion with users and contributors.
 
 <p align="center">
   <a href="https://styleci.io/repos/">
-    <img src="https://styleci.io/repos//shield" alt="StyleCI Status" />
+    <img src="https://styleci.io/repos/70262598/shield" alt="StyleCI Status" />
   </a>
   <a href="https://circleci.com/gh/znck/extend">
     <img src="https://circleci.com/gh/znck/extend.svg?style=svg" alt="Build Status" />

@@ -2,9 +2,13 @@
 
 trait Extendible
 {
-    protected $extendColumn = 'additional';
+    protected static $extendColumn = 'additional';
 
     protected $extends = [];
+
+    public function getCasts() {
+        return array_merge([self::$extendColumn => 'json'], parent::getCasts());
+    }
 
     // -- Overrides.
     protected function getArrayableAttributes()
@@ -48,9 +52,8 @@ trait Extendible
         }
     }
 
-    public function getExtendedAttribute($key)
-    {
-        $attributes = $this->{$this->extendColumn};
+    public function getExtendedAttribute($key) {
+        $attributes = $this->{self::$extendColumn};
 
         if (array_key_exists($key, $attributes)) {
             return $attributes[$key];
@@ -62,7 +65,7 @@ trait Extendible
         if ($this->isExtendedAttribute($key)) {
             unset($this->attributes[$key]);
 
-            $this->{$this->extendColumn}[$key] = $value;
+            $this->{self::$extendColumn}[$key] = $value;
 
             return $this;
         }
@@ -73,5 +76,9 @@ trait Extendible
     public function isExtendedAttribute($key)
     {
         return in_array($key, $this->appends);
+    }
+
+    public static function getExtendedQueryKey($key) {
+        return self::$extendColumn."->>'${key}'";
     }
 }
