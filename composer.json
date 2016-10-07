@@ -1,0 +1,47 @@
+{
+    "name": "znck/extend",
+    "type": "library",
+    "description": "JSON extendible schema for Eloquent",
+    "keywords": [
+        "znck",
+        "extend"
+    ],
+    "homepage": "https://github.com/znck/extend",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "Rahul Kadyan",
+            "email": "hi@znck.me",
+            "homepage": "http://znck.me",
+            "role": "Developer"
+        }
+    ],
+    "require": {
+        "php" : "~7.0",
+        "illuminate/database": "~5.3"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^5.1",
+        "phpunit/php-code-coverage": "^3.1",
+        "satooshi/php-coveralls": "^1.0",
+        "fabpot/php-cs-fixer": "^1.11"
+    },
+    "autoload": {
+        "psr-4": {
+            "Znck\\Extend\\": "src//"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "Znck\\Tests\\Extend\\": "tests//"
+        }
+    },
+    "scripts": {
+        "test": "phpunit"
+    },
+    "extra": {
+        "branch-alias": {
+            "dev-master": "1.0-dev"
+        }
+    }
+}
