@@ -39,7 +39,7 @@ trait Extendible
         }
 
         return $this->getArrayableItems(
-            array_combine($this->appends, $this->appends)
+            array_combine($this->extends, $this->extends)
         );
     }
 
@@ -75,7 +75,7 @@ trait Extendible
 
     public function isExtendedAttribute($key)
     {
-        return in_array($key, $this->appends);
+        return in_array($key, $this->extends);
     }
 
     public static function getExtendedQueryKey($key) {
