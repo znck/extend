@@ -15,12 +15,12 @@ trait Extendible
         return parent::getArrayableAttributes() + $this->getArrayableExtends();
     }
 
-    public function getAttributeFromArray($key) {
+    public function getAttribute($key) {
         if ($this->isExtendedAttribute($key)) {
             return $this->getExtendedAttribute($key);
         }
 
-        return parent::getAttributeFromArray($key);
+        return parent::getAttribute($key);
     }
 
     public function setAttribute($key, $value) {
@@ -71,6 +71,6 @@ trait Extendible
     }
 
     public static function getExtendedQueryKey($key) {
-        return self::$extendColumn."->>'${key}'";
+        return self::$extendColumn.'->'.$key;
     }
 }
