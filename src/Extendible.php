@@ -48,7 +48,7 @@ trait Extendible
     }
 
     public function getExtendedAttribute($key) {
-        $attributes = $this->{self::$extendColumn};
+        $attributes = (array)$this->{self::$extendColumn};
 
         if (array_key_exists($key, $attributes)) {
             return $attributes[$key];
@@ -58,7 +58,7 @@ trait Extendible
     public function setExtendedAttribute($key, $value) {
         if ($this->isExtendedAttribute($key)) {
             unset($this->attributes[$key]);
-            $this->{self::$extendColumn} = array_merge([$key => $value], $this->{self::$extendColumn});
+            $this->{self::$extendColumn} = array_merge([$key => $value], (array)$this->{self::$extendColumn});
 
             return $this;
         }
