@@ -39,14 +39,6 @@ trait Extendible
         );
     }
 
-    public function getArrayableExtendValues() {
-        $attributes = [];
-
-        foreach ($this->getArrayableExtends() as $key) {
-            $attributes[$key] = $this->getAttribute($key);
-        }
-    }
-
     public function getExtendedAttribute($key) {
         $attributes = (array)$this->{self::$extendColumn};
 
@@ -57,8 +49,11 @@ trait Extendible
 
     public function setExtendedAttribute($key, $value) {
         if ($this->isExtendedAttribute($key)) {
+            $this->{self::$extendColumn} = [
+                $key => $this->attributes[$key] ?? $value
+            ] + (array) $this->{self::$extendColumn};
+
             unset($this->attributes[$key]);
-            $this->{self::$extendColumn} = array_merge([$key => $value], (array)$this->{self::$extendColumn});
 
             return $this;
         }
